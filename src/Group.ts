@@ -6,11 +6,10 @@ class Group<T> {
     for (let i = 0; i < subArray.length; ++i) {
       subArray[i] = setCopy.splice(Math.floor(Math.random() * setCopy.length), 1)[0]
 
+      // TODO: check if it is possible to check interiority of operation as well...
       // if (!set.includes(<number>add(subArray[i], Math.floor(Math.random() * set.length)))) throw new Error('The operation is not internal.')
 
       inverted = add(neutral, inverse(subArray[i]))
-      console.log(subArray[i])
-      console.log({ inverted })
       if (!Object.is(add(subArray[i], inverted), neutral) || !Object.is(add(inverted, subArray[i]), neutral)) {
         throw new Error('Inverse function is not harmonized correctly with addition operation.')
       }
@@ -33,8 +32,6 @@ class AbelianGroup<T> extends Group<T> {
     super(set, neutral, add, inverse)
   }
 }
-
-console.log(typeof Symbol('ss'))
 
 export { Group, AbelianGroup }
 export default AbelianGroup
