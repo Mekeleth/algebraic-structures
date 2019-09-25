@@ -1,4 +1,6 @@
-class Group<T> {
+import AlgebraicStructure from './helpers/interfaces'
+
+class Group<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutral: T, public add: (x: T, y: T) => T, public inverse: (x: T) => T) {
     let setCopy: T[] = set
     let subArray: T[] = new Array(Math.ceil(Math.sqrt(setCopy.length)))
@@ -24,10 +26,9 @@ class Group<T> {
       }
     }
   }
-
 }
 
-class AbelianGroup<T> extends Group<T> {
+class AbelianGroup<T> extends Group<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutral: T, public add: (x: T, y: T) => T, public inverse: (x: T) => T) {
     super(set, neutral, add, inverse)
   }
