@@ -1,5 +1,5 @@
 import AlgebraicStructure from './helpers/interfaces'
-import isAssociative from './helpers/functions'
+import { isNeutral, isAssociative, isCommutative } from './helpers/functions'
 
 class Group<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutral: T, public add: (x: T, y: T) => T, public inverse: (x: T) => T) {
@@ -14,11 +14,9 @@ class Group<T> implements AlgebraicStructure<T> {
       // TODO: check if it is possible to check interiority of operation as well...
       // if (!set.includes(<number>add(subArray[i], Math.floor(Math.random() * set.length)))) throw new Error('The operation is not internal.')
 
-      if (!Object.is(add(subArray[i], inverted), neutral) || !Object.is(add(inverted, subArray[i]), neutral)) {
-        throw new Error('Inverse function is not harmonized correctly with addition operation.')
-      }
+      if (!Object.is(add(subArray[i], inverted), neutral) || !Object.is(add(inverted, subArray[i]), neutral)) throw new Error('Inverse function is not harmonized correctly with additive operation.')
 
-      if (add(subArray[i], neutral) !== subArray[i] || add(neutral, subArray[i]) !== subArray[i]) throw new Error('Either given element is not neutral or the operation is incorrectly defined.')
+      if (!isNeutral(add, neutral, subArray[i])) throw new Error('Either given element is not neutral or the additive operation is incorrectly defined.')
 
       for (let j = 0; j < Math.ceil(Math.sqrt(set.length)); ++j) {
         a = set[Math.floor(Math.random() * set.length)]
@@ -44,7 +42,7 @@ class AbelianGroup<T> extends Group<T> implements AlgebraicStructure<T> {
       for (let j = 0; j < Math.ceil(Math.sqrt(set.length)); ++j) {
         a = set[Math.floor(Math.random() * set.length)]
 
-        if (add(subArray[i], a) !== add(a, subArray[i]) && !Object.is(add(subArray[i], a), add(a, subArray[i]))) throw new Error('The addition operation is not commutative.')
+        if (!isCommutative(add, subArray[i], a)) throw new Error('The additive operation is not commutative.')
       }
     }
   }
