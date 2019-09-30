@@ -24,6 +24,12 @@ function isDistributive<T>(add: (x: T, y: T) => T, multiply: (x: T, y: T) => T, 
   return firstCase && secondCase && thirdCase
 }
 
+function isPrime(num: number) {
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+    if (num % i === 0) return false;
+  return num > 1;
+}
 
-export { isNeutral, isAssociative, isCommutative, isDistributive }
+
+export { isEqual, isNeutral, isAssociative, isCommutative, isDistributive, isPrime }
 export default isAssociative
