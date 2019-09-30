@@ -6,7 +6,7 @@ class Ring<T> extends AbelianGroup<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutral: T, public add: (x: T, y: T) => T, public multiply: (x: T, y: T) => T, public inverse: (x: T) => T) {
     super(set, neutral, add, inverse)
 
-    let setCopy: T[] = set
+    let setCopy: T[] = new Array(...set)
     let subArray: T[] = new Array(Math.ceil(Math.sqrt(setCopy.length)))
     let a: T, b: T
 
@@ -28,7 +28,7 @@ class CommutativeRing<T> extends Ring<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutral: T, public add: (x: T, y: T) => T, public multiply: (x: T, y: T) => T, public inverse: (x: T) => T) {
     super(set, neutral, add, multiply, inverse)
 
-    let setCopy: T[] = set
+    let setCopy: T[] = new Array(...set)
     let subArray: T[] = new Array(Math.ceil(Math.sqrt(setCopy.length)))
     let a: T
 
