@@ -6,7 +6,7 @@ class Field<T> extends AbelianGroup<T> implements AlgebraicStructure<T> {
   constructor(public set: T[], public neutralAdd: T, public add: (x: T, y: T) => T, public neutralMultiply: T, public multiply: (x: T, y: T) => T, public inverseAdd: (x: T) => T, public inverseMultiply: (x: T) => T) {
     super(set, neutralAdd, add, inverseAdd)
     // super(set, neutralMultiply, multiply, inverseMultiply, false)
-    const multiplicativeAbelianGroup: AbelianGroup<T> = new AbelianGroup<T>(set, neutralMultiply, multiply, inverseMultiply, false)
+    const multiplicativeAbelianGroup: AbelianGroup<T> = new AbelianGroup<T>(set, neutralMultiply, multiply, inverseMultiply, neutralAdd)
 
     let setCopy: T[] = new Array(...set)
     let subArray: T[] = new Array(Math.ceil(Math.sqrt(setCopy.length)))
