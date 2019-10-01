@@ -1,9 +1,11 @@
 interface AlgebraicStructure<T> {
   set: T[]
-  neutral: T
+  neutralAdd: T
+  neutralMultiply?: T
   add(x: T, y: T): T
-  inverse(x: T): T
   multiply?(x: T, y: T): T
+  inverseAdd(x: T): T
+  inverseMultiply?(x: T): T
 }
 
 export { AlgebraicStructure }
